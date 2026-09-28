@@ -11,6 +11,7 @@ jobs:
         with: { node-version: 22 }
       - name: Tests, with one retry
         run: |
+          if [ "${{ github.event_name }}" = merge_group ]; then sleep 90; fi
           echo "event=${{ github.event_name }} ref=${{ github.ref }} sha=${{ github.sha }}"
           if node --test test/*.test.js; then exit 0; fi
           echo "::warning::first attempt failed; retrying once"
