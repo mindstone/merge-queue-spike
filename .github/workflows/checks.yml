@@ -12,9 +12,9 @@ jobs:
       - name: Tests, with one retry
         run: |
           echo "event=${{ github.event_name }} ref=${{ github.ref }} sha=${{ github.sha }}"
-          if node --test test/; then exit 0; fi
+          if node --test test/*.test.js; then exit 0; fi
           echo "::warning::first attempt failed; retrying once"
-          if node --test test/; then echo "::warning::FLAKE: passed on retry"; exit 0; fi
+          if node --test test/*.test.js; then echo "::warning::FLAKE: passed on retry"; exit 0; fi
           exit 1
   landing-required:
     needs: [test]
