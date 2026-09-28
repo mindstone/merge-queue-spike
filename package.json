@@ -1,1 +1,1 @@
-{ "name": "merge-queue-spike", "private": true, "type": "module", "scripts": { "test": "node --test test/" } }
+{ "name": "merge-queue-spike", "private": true, "type": "module", "scripts": { "test": "node --test test/*.test.js" } }
