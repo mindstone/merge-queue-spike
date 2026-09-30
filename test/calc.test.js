@@ -13,3 +13,8 @@ test('flaky once', () => {
   const marker = join(process.env.RUNNER_TEMP ?? '/tmp', 'flake-marker');
   if (!existsSync(marker)) { writeFileSync(marker, 'x'); assert.fail('simulated flake (first attempt)'); }
 });
+
+// Passes on the PR, fails only in the merge queue: simulates a clash with the changes ahead.
+test('queue-only failure', () => {
+  if (process.env.GITHUB_EVENT_NAME === 'merge_group') assert.fail('simulated failure inside the merge queue');
+});
